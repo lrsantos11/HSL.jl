@@ -23,6 +23,7 @@ notifications:
   email: false
 
 script:
+  - julia -e 'Pkg.clone("https://github.com/JuliaSmoothOptimizers/HSL.jl.git")'
   - true
 
 after_success:
