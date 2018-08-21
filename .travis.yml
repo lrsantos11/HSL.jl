@@ -12,8 +12,8 @@ julia:
 
 matrix:
   allow_failures:
-    - 1.0
-    - nightly
+    - julia: 1.0
+    - julia: nightly
 
 branches:
   only:
@@ -22,10 +22,8 @@ branches:
 notifications:
   email: false
 
-script:
-  - julia -e 'Pkg.clone("https://github.com/JuliaSmoothOptimizers/HSL.jl.git")'
-  - true
-
-after_success:
+before_install:
   - julia -e 'Pkg.add("Documenter")'
+
+script:
   - julia -e 'cd(Pkg.dir("HSL")); include(joinpath("docs", "make.jl"))'
